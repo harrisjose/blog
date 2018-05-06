@@ -1,0 +1,81 @@
+{
+  "name": "Musings-on-Code",
+  "description": "Starter Gatsby Blog No Styles",
+  "version": "0.0.1",
+  "author": "Harris Jose <noah.glusenkamp@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby-starter-blog/issues"
+  },
+  "dependencies": {
+    "babel-plugin-emotion": "^9.1.2",
+    "babel-preset-env": "^1.6.1",
+    "emotion": "^9.1.2",
+    "emotion-server": "^9.1.2",
+    "fractures": "^1.2.2",
+    "gatsby": "^1.8.12",
+    "gatsby-link": "^1.6.8",
+    "gatsby-plugin-emotion": "^1.1.16",
+    "gatsby-plugin-google-analytics": "^1.0.4",
+    "gatsby-plugin-manifest": "^1.0.4",
+    "gatsby-plugin-offline": "^1.0.4",
+    "gatsby-plugin-preact": "^1.0.3",
+    "gatsby-plugin-react-helmet": "^1.0.3",
+    "gatsby-plugin-sharp": "^1.6.2",
+    "gatsby-remark-copy-linked-files": "^1.5.2",
+    "gatsby-remark-images": "^1.5.4",
+    "gatsby-remark-prismjs": "^1.2.24",
+    "gatsby-remark-responsive-iframe": "^1.4.3",
+    "gatsby-remark-smartypants": "^1.4.3",
+    "gatsby-source-filesystem": "^1.4.3",
+    "gatsby-transformer-remark": "^1.7.40",
+    "gatsby-transformer-sharp": "^1.6.1",
+    "lodash": "^4.15.0",
+    "prismjs": "^1.14.0",
+    "react-emotion": "^9.1.2",
+    "xo": "^0.21.0"
+  },
+  "devDependencies": {
+    "eslint-config-xo-react": "^0.16.0",
+    "eslint-plugin-react": "^7.7.0",
+    "gh-pages": "^0.12.0",
+    "prettier": "^1.6.1"
+  },
+  "homepage": "https://github.com/noahg/gatsby-starter-blog-no-styles#readme",
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "main": "n/a",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noahg/gatsby-starter-blog-no-styles.git"
+  },
+  "scripts": {
+    "dev": "gatsby develop",
+    "lint": "./node_modules/.bin/xo",
+    "test": "xo",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+  },
+  "xo": {
+    "extends": "xo-react",
+    "space": true,
+    "globals": [
+      "graphql"
+    ],
+    "rules": {
+      "import/no-extraneous-dependencies": "off",
+      "import/no-unassigned-import": {
+        "allow": [
+          "*.css"
+        ]
+      },
+      "react/no-danger": "off",
+      "react/prop-types": [
+        1
+      ]
+    }
+  }
+}
