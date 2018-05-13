@@ -9,7 +9,7 @@ Gulp is a great tool for running tasks. It saves us loads of time while developm
 ## The problem with Gulp
 
 Soon we had two major problems at hand,
-* Our gulpfiles were huge, with common code scattered all over.
+* The gulpfiles were huge, with common code scattered all over.
 * Running these tasks took some time.
 
 This was a problem since changing something in a task meant changing it in ~10 projects. Also since tasks took sometime to complete, development no longer felt instant.
@@ -99,14 +99,14 @@ This quickly starts slowing down your rebuilds as the number of files start incr
 
 ## Write performance intensive tasks directly in Node
 
-One of the biggest issues with gulp is that it isn't very fast when it comes to things like copying a lot of files (~11000) from one place to another. So instead of doing this
+One of the biggest issues with gulp is that it isn't very fast when it comes to things like copying a lot of files (around 10,000 of them) from one place to another. So instead of doing this,
 
 ```javascript
 return gulp.src('assets/images/**/*.*')
   .pipe(gulp.dest('assets/images/**/*.*'))
 ```
 
-do it like this
+do it like this,
 
 ```javascript
 const copy = require('cpy');
@@ -143,7 +143,7 @@ You can now add "myGulpModule" as a dependency on your projects and run it via
 
 Oh wait, did I mention you just built an entire CLI now ? (ᵔᴥᵔ)
 
-## Related Reading
+### Related Reading
 
-[1] - [Let's scale that Gulpfile.js](http://www.drinchev.com/blog/let-s-scale-that-gulpfile-js/) - Ivan Drinchev   
-[2] - [Awesome Gulp](https://github.com/alferov/awesome-gulp) - Philipp Alferov
+[Let's scale that Gulpfile.js](http://www.drinchev.com/blog/let-s-scale-that-gulpfile-js/) - Ivan Drinchev   
+[Awesome Gulp](https://github.com/alferov/awesome-gulp) - Philipp Alferov

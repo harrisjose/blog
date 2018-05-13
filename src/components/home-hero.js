@@ -1,7 +1,7 @@
 import React from 'react';
 import {css} from 'emotion';
 
-import Button from './sexy-button';
+import NavBar from './nav-bar';
 
 const descStyles = css`
   font-size: 20px;
@@ -19,8 +19,9 @@ const linkStyle = css`
 function Hero() {
   return (
     <div className="bg-white">
-      <div className="mx-auto container">
-        <div className="flex flex-column pt-6 pb-5">
+      <div className="mx-auto pt-2 container">
+        <NavBar/>
+        <div className="flex flex-column pt-5 pb-5">
           <h1 className={css`font-size: 40px;`}>
             Harris Jose
           </h1>
@@ -32,7 +33,6 @@ function Hero() {
             </a>
             <br/>Loves Node.js and the Web.
           </h3>
-          <Button link="/about" value="Read more"/>
         </div>
       </div>
     </div>

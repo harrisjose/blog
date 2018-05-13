@@ -26,10 +26,15 @@ class BlogIndex extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
 
     return (
-      <div className="bg-haze pt-2 minvh-100 flex flex-column">
-        <Helmet title={siteTitle}/>
+      <div className="bg-haze minvh-100 flex flex-column">
+        <Helmet title={`Articles | ${siteTitle}`}/>
 
-        <NavBar/>
+        <div className="bg-white pt-2">
+          <NavBar/>
+          <div className="my-5 mx-auto container">
+            <h1>Articles</h1>
+          </div>
+        </div>
 
         <div className="my-5 mx-auto container grow-1">
           {posts.map(({node}) => {

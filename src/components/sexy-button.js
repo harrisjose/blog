@@ -40,6 +40,7 @@ const styles = css`
     font-weight: bold;
     line-height: 28px;
     cursor: pointer;
+    outline: none;
   }
   & input[type="button"]:focus:not(:active) {
     outline: 1px dashed var(--gray);

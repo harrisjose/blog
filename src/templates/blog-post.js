@@ -1,10 +1,8 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import Link from 'gatsby-link';
 import get from 'lodash/get';
 import {css} from 'emotion';
 
-// import Bio from '../components/bio';
 import Footer from '../components/footer';
 import NavBar from '../components/nav-bar';
 
@@ -22,7 +20,7 @@ const content = css`
   max-width: 100%;
   width: 768px;
 
-  & h2 {
+  & h2, & h3 {
     margin: 32px 0 8px;
   }
 
@@ -34,7 +32,7 @@ const content = css`
   }
 
   & pre code {
-    font-size: 0.85em;
+    font-size: 0.9em;
     line-height: 1.7;
   }
 
@@ -44,58 +42,33 @@ const content = css`
   }
 
   & a {
-    color: var(--navy);
+    color: var(--blue);
     font-weight: 600;
     text-decoration: none;
-    transition: all ease-in-out 250ms;
-
-    background-image: linear-gradient(transparent, transparent 5px, var(--navy) 5px, var(--navy));
-    background-position: bottom;
-    background-size: 100% 6px;
-    background-repeat: repeat-x;
+    transition: all 100ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 -2px 0px 0px rgba(87, 137, 212, 0.18);
 
     &:hover {
-      color: var(--blue);
-      background-image: linear-gradient(transparent, transparent 4px, var(--blue) 4px, var(--blue));
+      box-shadow: none;
+      background: rgba(87, 137, 212, 0.18);
     }
   }
 `;
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.markdownRemark;
+    const post = get(this.props, 'data.markdownRemark');
     const siteTitle = get(this.props, 'data.site.siteMetadata.title');
-    const {previous, next} = this.props.pathContext;
 
     return (
       <div className="bg-haze pt-2 minvh-100">
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`}/>
         <NavBar/>
 
-        <div className="mx-auto my-4 container">
+        <div className="mx-auto my-5 container">
           <h1 className={title}>{post.frontmatter.title}</h1>
           <p className={titleSubtext}>{post.frontmatter.date}</p>
-          <div className={`${content} my-3`} dangerouslySetInnerHTML={{__html: post.html}}/>
-
-          <ul className="mt-5 flex flex-between flex-gap-1">
-            {previous && (
-              <li>
-                <span className="article-nav block tsm bold">Previous</span>
-                <Link to={previous.fields.slug} rel="prev" className="blue">
-                  ← {previous.frontmatter.title}
-                </Link>
-              </li>
-            )}
-
-            {next && (
-              <li>
-                <span className="article-nav block tsm bold right">Next</span>
-                <Link to={next.fields.slug} rel="next" className="blue">
-                  {next.frontmatter.title} →
-                </Link>
-              </li>
-            )}
-          </ul>
+          <div className={`${content} mt-4 mb-3`} dangerouslySetInnerHTML={{__html: post.html}}/>
         </div>
 
         <hr className="divider"/>
