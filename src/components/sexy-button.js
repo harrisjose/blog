@@ -1,5 +1,6 @@
 import React from 'react';
 import {css} from 'emotion';
+import Link from 'gatsby-link';
 
 const styles = css`
   text-decoration: none;
@@ -50,11 +51,11 @@ const styles = css`
 
 function Button(props) {
   return (
-    <a href={props.link} className={styles}>
+    <Link to={props.link} className={styles}>
       <span className="relative inline-block">
         <input type="button" value={props.value}/>
       </span>
-    </a>
+    </Link>
   );
 }
 export default Button;

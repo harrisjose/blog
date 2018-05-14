@@ -1,10 +1,10 @@
 {
-  "name": "Musings-on-Code",
-  "description": "Starter Gatsby Blog No Styles",
+  "name": "blog",
+  "description": "",
   "version": "0.0.1",
-  "author": "Harris Jose <noah.glusenkamp@gmail.com>",
+  "author": "Harris Jose <harrisjose@outlook.com>",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby-starter-blog/issues"
+    "url": "https://github.com/harrisjose/blog/issues"
   },
   "dependencies": {
     "babel-plugin-emotion": "^9.1.2",
@@ -12,7 +12,7 @@
     "emotion": "^9.1.2",
     "emotion-server": "^9.1.2",
     "fractures": "^1.2.2",
-    "gatsby": "^1.8.12",
+    "gatsby": "^1.9.260",
     "gatsby-link": "^1.6.8",
     "gatsby-plugin-emotion": "^1.1.16",
     "gatsby-plugin-google-analytics": "^1.0.4",
@@ -51,13 +51,12 @@
     "url": "git+https://github.com/noahg/gatsby-starter-blog-no-styles.git"
   },
   "scripts": {
-    "dev": "gatsby develop",
-    "lint": "./node_modules/.bin/xo",
+    "lint": "xo",
     "test": "xo",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js'",
+    "dev": "gatsby develop",
     "develop": "gatsby develop",
     "build": "gatsby build",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "deploy": "gatsby build && gh-pages -d public -b master -r https://github.com/harrisjose/harrisjose.github.io.git"
   },
   "xo": {
     "extends": "xo-react",

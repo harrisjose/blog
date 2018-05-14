@@ -1,6 +1,10 @@
 # Blog
 
-## Building
+## Developing
 
 - `yarn`
 - `gatsby develop`
+
+## Deploying
+
+- `npm run deploy`
