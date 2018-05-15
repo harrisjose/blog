@@ -53,6 +53,13 @@ const content = css`
       background: rgba(87, 137, 212, 0.18);
     }
   }
+
+  & blockquote {
+    border-left: 3px solid var(--blue);
+    padding: 0px 15px;
+    color: #617692;
+    font-style: italic;
+  }
 `;
 
 class BlogPostTemplate extends React.Component {
