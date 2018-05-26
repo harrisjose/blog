@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import Helmet from 'react-helmet';
 import {css} from 'emotion';
 
+import Layout from '../components/layout';
 import Footer from '../components/footer';
 import NavBar from '../components/nav-bar';
 
@@ -26,38 +27,40 @@ class BlogIndex extends React.Component {
     const posts = get(this, 'props.data.allMarkdownRemark.edges');
 
     return (
-      <div className="bg-haze minvh-100 flex flex-column">
-        <Helmet title={`Articles | ${siteTitle}`}/>
+      <Layout>
+        <div className="bg-haze minvh-100 flex flex-column">
+          <Helmet title={`Articles | ${siteTitle}`}/>
 
-        <div className="bg-white pt-2">
-          <NavBar/>
-          <div className="my-5 mx-auto container">
-            <h1>Articles</h1>
+          <div className="bg-white pt-2">
+            <NavBar/>
+            <div className="my-5 mx-auto container">
+              <h1>Articles</h1>
+            </div>
+          </div>
+
+          <div className="my-5 mx-auto container grow-1">
+            {posts.map(({node}) => {
+              const title = get(node, 'frontmatter.title') || node.fields.slug;
+              return (
+                <div key={node.fields.slug} className={`mb-4 ${postContainer}`}>
+                  <h3>
+                    <Link to={node.fields.slug} className={postLink}>
+                      {title}
+                    </Link>
+                  </h3>
+                  <small>{node.frontmatter.date}</small>
+                  <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
+                </div>
+              );
+            })}
+          </div>
+
+          <div>
+            <hr className="divider"/>
+            <Footer className="self-end"/>
           </div>
         </div>
-
-        <div className="my-5 mx-auto container grow-1">
-          {posts.map(({node}) => {
-            const title = get(node, 'frontmatter.title') || node.fields.slug;
-            return (
-              <div key={node.fields.slug} className={`mb-4 ${postContainer}`}>
-                <h3>
-                  <Link to={node.fields.slug} className={postLink}>
-                    {title}
-                  </Link>
-                </h3>
-                <small>{node.frontmatter.date}</small>
-                <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
-              </div>
-            );
-          })}
-        </div>
-
-        <div>
-          <hr className="divider"/>
-          <Footer className="self-end"/>
-        </div>
-      </div>
+      </Layout>
     );
   }
 }

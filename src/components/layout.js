@@ -2,8 +2,8 @@ import React from 'react';
 import {injectGlobal} from 'emotion';
 
 import 'fractures/dist/fractures.css';
-import './highlight.css';
-import './index.css';
+import '../styles/highlight.css';
+import '../styles/index.css';
 
 // Hack to make custom variables work
 injectGlobal`
@@ -32,11 +32,5 @@ class Template extends React.Component {
     );
   }
 }
-
-Template.propTypes = {
-  children: React.PropTypes.func,
-  location: React.PropTypes.object,
-  route: React.PropTypes.object
-};
 
 export default Template;
