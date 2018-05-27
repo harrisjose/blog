@@ -18,9 +18,9 @@ const linkStyle = css`
 
 function Hero() {
   return (
-    <div className="bg-white">
+    <div className="bg-white pt-2">
+      <NavBar/>
       <div className="mx-auto pt-2 container">
-        <NavBar/>
         <div className="flex flex-column pt-5 pb-5">
           <h1 className={css`font-size: 40px;`}>
             Harris Jose
