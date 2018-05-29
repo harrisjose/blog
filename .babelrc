@@ -1,16 +1,36 @@
 {
+  "cacheDirectory": true,
+  "babelrc": false,
   "presets": [
-    'react',
-    ["env", {
+    ["@babel/preset-env", {
+      "loose": true,
+      "modules": false,
+      "useBuiltIns": "usage",
+      "sourceType": "unambiguous",
+      "shippedProposals": true,
       "targets": {
         "browsers": [
-          "last 4 Chrome versions",
-          "last 4 Firefox versions",
-          "last 2 Edge version",
-          "Safari >= 7"
+          "last 2 versions",
+          "IE >= 11"
         ]
       }
+    }],
+    ["@babel/preset-react", {
+      "useBuiltIns": true,
+      "pragma": "React.createElement"
     }]
   ],
-  "plugins": ['emotion', 'add-module-exports']
+  "plugins": [
+    ["@babel/plugin-proposal-class-properties", {
+      "loose": true
+    }],
+    "@babel/plugin-syntax-dynamic-import",
+    ["@babel/plugin-transform-runtime", {
+      "helpers": true,
+      "regenerator": true,
+      "polyfill": false
+    }],
+    "babel-plugin-emotion",
+    "babel-plugin-add-module-exports"
+  ]
 }
