@@ -7,14 +7,6 @@
     "url": "https://github.com/harrisjose/blog/issues"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.49",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.49",
-    "@babel/plugin-transform-runtime": "^7.0.0-beta.49",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-emotion": "^9.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
     "emotion": "^9.1.2",
     "emotion-server": "^9.1.2",
     "fractures": "^1.2.2",
@@ -24,7 +16,7 @@
     "gatsby-plugin-google-analytics": "next",
     "gatsby-plugin-manifest": "next",
     "gatsby-plugin-offline": "next",
-    "gatsby-plugin-react-helmet": "^1.0.3",
+    "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-sharp": "next",
     "gatsby-remark-copy-linked-files": "next",
     "gatsby-remark-images": "next",
@@ -39,6 +31,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-emotion": "^9.1.2",
+    "react-helmet": "^5.2.0",
     "ws": "^3.3.1",
     "xo": "^0.21.1"
   },
