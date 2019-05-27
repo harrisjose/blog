@@ -70,7 +70,7 @@ export default props => {
 
   return (
     <Layout children={props.children}>
-      <div className="bg-haze pt-2 minvh-100">
+      <div className="bg-haze pt-2 minh-viewport">
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`}/>
         <NavBar/>
 

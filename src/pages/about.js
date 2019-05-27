@@ -35,7 +35,7 @@ export default props => {
 
   return (
     <Layout children={props.children}>
-      <div className="bg-haze minvh-100 flex flex-column">
+      <div className="bg-haze minh-viewport flex flex-column">
         <Helmet title={`About | ${siteTitle}`}/>
 
         <div className="bg-white pt-2">

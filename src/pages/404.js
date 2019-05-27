@@ -21,11 +21,11 @@ export default props => {
 
   return (
     <Layout children={props.children}>
-      <div className="flex flex-center minvh-100">
+      <div className="flex flex-center minh-viewport">
         <Helmet title={`Page Not Found | ${siteTitle}`}/>
         <h1 className={`mr-3 pr-3 py-2`} css={h1Style}>404</h1>
         <div>
-          <p className="mb-1">Uh, this page does not seem to exist.</p>
+          <p className="mb-1">Umm, I dont think you should be here.</p>
           <p>
             <a css={linkStyle} href="/">
               Go Home

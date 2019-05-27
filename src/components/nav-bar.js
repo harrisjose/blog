@@ -11,8 +11,8 @@ export default () => (
     <div className="mx-auto container">
       <ul className="flex flex-gap-4">
         <li><Link to="/" css={linkStyle} activeStyle={{color: 'var(--navy)'}}>Home</Link></li>
-        <li><Link to="/articles" css={linkStyle} activeStyle={{color: 'var(--navy)'}}>Articles</Link></li>
-        <li><Link to="/about" css={linkStyle} activeStyle={{color: 'var(--navy)'}}>About</Link></li>
+        <li><Link to="/articles/" css={linkStyle} activeStyle={{color: 'var(--navy)'}}>Articles</Link></li>
+        <li><Link to="/about/" css={linkStyle} activeStyle={{color: 'var(--navy)'}}>About</Link></li>
       </ul>
     </div>
   </nav>
