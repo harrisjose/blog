@@ -1,9 +1,9 @@
 import React from 'react';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
-import {css} from 'emotion';
-
+import {css} from '@emotion/core';
+import { StaticQuery, graphql } from 'gatsby';
 import Layout from '../components/layout';
 import Footer from '../components/footer';
 import NavBar from '../components/nav-bar';
@@ -21,51 +21,47 @@ const postLink = css`
   line-height: 34px;
 `;
 
-class BlogIndex extends React.Component {
-  render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
-    const posts = get(this, 'props.data.allMarkdownRemark.edges');
+export default props => {
+  const siteTitle = get(props, 'data.site.siteMetadata.title');
+  const posts = get(props, 'data.allMarkdownRemark.edges');
 
-    return (
-      <Layout>
-        <div className="bg-haze minvh-100 flex flex-column">
-          <Helmet title={`Articles | ${siteTitle}`}/>
+  return (
+    <Layout children={props.children}>
+      <div className="bg-haze minvh-100 flex flex-column">
+        <Helmet title={`Articles | ${siteTitle}`}/>
 
-          <div className="bg-white pt-2">
-            <NavBar/>
-            <div className="my-5 mx-auto container">
-              <h1>Articles</h1>
-            </div>
-          </div>
-
-          <div className="my-5 mx-auto container grow-1">
-            {posts.map(({node}) => {
-              const title = get(node, 'frontmatter.title') || node.fields.slug;
-              return (
-                <div key={node.fields.slug} className={`mb-4 ${postContainer}`}>
-                  <h3>
-                    <Link to={node.fields.slug} className={postLink}>
-                      {title}
-                    </Link>
-                  </h3>
-                  <small>{node.frontmatter.date}</small>
-                  <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
-                </div>
-              );
-            })}
-          </div>
-
-          <div>
-            <hr className="divider"/>
-            <Footer className="self-end"/>
+        <div className="bg-white pt-2">
+          <NavBar/>
+          <div className="my-5 mx-auto container">
+            <h1>Articles</h1>
           </div>
         </div>
-      </Layout>
-    );
-  }
-}
 
-export default BlogIndex;
+        <div className="my-5 mx-auto container grow-1">
+          {posts.map(({node}) => {
+            const title = get(node, 'frontmatter.title') || node.fields.slug;
+            return (
+              <div key={node.fields.slug} className={`mb-4`} css={postContainer}>
+                <h3>
+                  <Link to={node.fields.slug} css={postLink}>
+                    {title}
+                  </Link>
+                </h3>
+                <small>{node.frontmatter.date}</small>
+                <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
+              </div>
+            );
+          })}
+        </div>
+
+        <div>
+          <hr className="divider"/>
+          <Footer className="self-end"/>
+        </div>
+      </div>
+    </Layout>
+  );
+};
 
 export const pageQuery = graphql`
   query ArticlesQuery {

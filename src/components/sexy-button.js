@@ -1,6 +1,6 @@
 import React from 'react';
-import {css} from 'emotion';
-import Link from 'gatsby-link';
+import {css} from '@emotion/core';
+import { Link } from 'gatsby';
 
 const styles = css`
   text-decoration: none;
@@ -46,16 +46,12 @@ const styles = css`
   & input[type="button"]:focus:not(:active) {
     outline: 1px dashed var(--gray);
   }
-
 `;
 
-function Button(props) {
-  return (
-    <Link to={props.link} className={styles}>
-      <span className="relative inline-block">
-        <input type="button" value={props.value}/>
-      </span>
-    </Link>
-  );
-}
-export default Button;
+export default (props) => (
+  <Link to={props.link} css={styles}>
+    <span className="relative inline-block">
+      <input type="button" value={props.value}/>
+    </span>
+  </Link>
+);

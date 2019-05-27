@@ -14,7 +14,7 @@ Now this, at the time, looked totally bonkers to me.
 
 Why? Because, with websites, you'll eventually need to serve a static page to your users. React or No React. So I started digging in. Was React and the ecosystem around it really that good? Is it worth sacrificing the simplicity of HTML + CSS + JS for an elaborate build process plus server-side rendering?
 
-## Abstracting away the complexity.
+## Abstracting away the complexity
 
 I eventually got nowhere with this (as with a lot of my other side-projects) but eventually I found Gatsby. Gatsby abstracted away a lot of the complexity and made it really simple to make static websites with React. It has a nice set of community plugins that just work.
 

@@ -1,12 +1,12 @@
 import React from 'react';
-import {injectGlobal} from 'emotion';
+import { Global, css } from '@emotion/core';
 
 import 'fractures/dist/fractures.css';
 import '../styles/highlight.css';
 import '../styles/index.css';
 
 // Hack to make custom variables work
-injectGlobal`
+const cssVars = css`
   :root {
     --red:#f3234a;
     --yellow:#ffd246;
@@ -22,15 +22,9 @@ injectGlobal`
   }
 `;
 
-class Template extends React.Component {
-  render() {
-    const {children} = this.props;
-    return (
-      <div>
-        {children}
-      </div>
-    );
-  }
-}
-
-export default Template;
+export default ({ children }) => (
+  <div>
+    <Global styles={cssVars}/>
+    {children}
+  </div>
+)

@@ -1,8 +1,9 @@
 import React from 'react';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
-import {css} from 'emotion';
+import {css} from '@emotion/core';
+import { StaticQuery, graphql } from 'gatsby';
 
 import Layout from '../components/layout';
 import Hero from '../components/home-hero';
@@ -22,51 +23,47 @@ const postLink = css`
   line-height: 34px;
 `;
 
-class BlogIndex extends React.Component {
-  render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
-    const posts = get(this, 'props.data.allMarkdownRemark.edges');
+export default props => {
+  const siteTitle = get(props, 'data.site.siteMetadata.title');
+  const posts = get(props, 'data.allMarkdownRemark.edges');
 
-    return (
-      <Layout>
-        <div className="bg-haze">
-          <Helmet title={siteTitle}/>
+  return (
+    <Layout children={props.children}>
+      <div className="bg-haze">
+        <Helmet title={siteTitle}/>
 
-          <Hero/>
+        <Hero/>
 
-          <div className="container mx-auto mt-3 pb-4">
-            <p className="mb-1 tmd">
-              Recent Articles
-            </p>
-            {posts.map(({node}) => {
-              const title = get(node, 'frontmatter.title') || node.fields.slug;
-              return (
-                <div key={node.fields.slug} className={`mb-3 ${postContainer}`}>
-                  <h3>
-                    <Link className={postLink} to={node.fields.slug}>
-                      {title}
-                    </Link>
-                  </h3>
-                  <p className="tmd mb-1">{node.frontmatter.date}</p>
-                  <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
-                </div>
-              );
-            })}
+        <div className="container mx-auto mt-3 pb-4">
+          <p className="mb-1 tmd">
+            Recent Articles
+          </p>
+          {posts.map(({node}) => {
+            const title = get(node, 'frontmatter.title') || node.fields.slug;
+            return (
+              <div key={node.fields.slug} css={postContainer} className={`mb-3`}>
+                <h3>
+                  <Link css={postLink} to={node.fields.slug}>
+                    {title}
+                  </Link>
+                </h3>
+                <p className="tmd mb-1">{node.frontmatter.date}</p>
+                <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
+              </div>
+            );
+          })}
 
-            <p className="flex flex-row flex-gap-4 mt-4 mb-2">
-              <Button link="/articles" value="More Articles"/>
-            </p>
-          </div>
-
-          <hr className="divider"/>
-          <Footer/>
+          <p className="flex flex-row flex-gap-4 mt-4 mb-2">
+            <Button link="/articles" value="More Articles"/>
+          </p>
         </div>
-      </Layout>
-    );
-  }
-}
 
-export default BlogIndex;
+        <hr className="divider"/>
+        <Footer/>
+      </div>
+    </Layout>
+  );
+}
 
 export const pageQuery = graphql`
   query IndexQuery {
