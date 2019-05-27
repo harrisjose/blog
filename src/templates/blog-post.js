@@ -1,8 +1,10 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import get from 'lodash/get';
-import {css} from 'emotion';
+import {css} from '@emotion/core';
+import { StaticQuery, graphql } from 'gatsby';
 
+import Layout from '../components/layout';
 import Footer from '../components/footer';
 import NavBar from '../components/nav-bar';
 
@@ -62,30 +64,28 @@ const content = css`
   }
 `;
 
-class BlogPostTemplate extends React.Component {
-  render() {
-    const post = get(this.props, 'data.markdownRemark');
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title');
+export default props => {
+  const post = get(props, 'data.markdownRemark');
+  const siteTitle = get(props, 'data.site.siteMetadata.title');
 
-    return (
-      <div className="bg-haze pt-2 minvh-100">
+  return (
+    <Layout children={props.children}>
+      <div className="bg-haze pt-2 minh-viewport">
         <Helmet title={`${post.frontmatter.title} | ${siteTitle}`}/>
         <NavBar/>
 
         <div className="mx-auto my-5 container">
-          <h1 className={title}>{post.frontmatter.title}</h1>
-          <p className={titleSubtext}>{post.frontmatter.date}</p>
-          <div className={`${content} mt-4 mb-3`} dangerouslySetInnerHTML={{__html: post.html}}/>
+          <h1 css={title}>{post.frontmatter.title}</h1>
+          <p css={titleSubtext}>{post.frontmatter.date}</p>
+          <div css={content} className={`mt-4 mb-3`} dangerouslySetInnerHTML={{__html: post.html}}/>
         </div>
 
         <hr className="divider"/>
         <Footer/>
       </div>
-    );
-  }
-}
-
-export default BlogPostTemplate;
+    </Layout>
+  );
+};
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {

@@ -1,7 +1,9 @@
 import React from 'react';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
-import {css} from 'emotion';
+import {css} from '@emotion/core';
+import { StaticQuery, graphql } from "gatsby";
+import Layout from '../components/layout';
 
 const h1Style = css`
   border-right: 1px solid #333;
@@ -14,28 +16,26 @@ const linkStyle = css`
   color: #4467A8;
 `;
 
-class NotFound extends React.Component {
-  render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
+export default props => {
+  const siteTitle = get(props, 'data.site.siteMetadata.title');
 
-    return (
-      <div className="flex flex-center minvh-100">
+  return (
+    <Layout children={props.children}>
+      <div className="flex flex-center minh-viewport">
         <Helmet title={`Page Not Found | ${siteTitle}`}/>
-        <h1 className={`mr-3 pr-3 py-2 ${h1Style}`}>404</h1>
+        <h1 className={`mr-3 pr-3 py-2`} css={h1Style}>404</h1>
         <div>
-          <p className="mb-1">Uh, this page does not seem to exist.</p>
+          <p className="mb-1">Umm, I dont think you should be here.</p>
           <p>
-            <a className={linkStyle} href="/">
+            <a css={linkStyle} href="/">
               Go Home
             </a>
           </p>
         </div>
       </div>
-    );
-  }
-}
-
-export default NotFound;
+    </Layout>
+  );
+};
 
 export const pageQuery = graphql`
   query NotFoundQuery {

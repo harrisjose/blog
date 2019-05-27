@@ -1,9 +1,11 @@
 import React from 'react';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import get from 'lodash/get';
 import Helmet from 'react-helmet';
-import {css} from 'emotion';
+import {css} from '@emotion/core';
+import { StaticQuery, graphql } from 'gatsby';
 
+import Layout from '../components/layout';
 import Hero from '../components/home-hero';
 import Footer from '../components/footer';
 import Button from '../components/sexy-button';
@@ -21,12 +23,12 @@ const postLink = css`
   line-height: 34px;
 `;
 
-class BlogIndex extends React.Component {
-  render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title');
-    const posts = get(this, 'props.data.allMarkdownRemark.edges');
+export default props => {
+  const siteTitle = get(props, 'data.site.siteMetadata.title');
+  const posts = get(props, 'data.allMarkdownRemark.edges');
 
-    return (
+  return (
+    <Layout children={props.children}>
       <div className="bg-haze">
         <Helmet title={siteTitle}/>
 
@@ -39,9 +41,9 @@ class BlogIndex extends React.Component {
           {posts.map(({node}) => {
             const title = get(node, 'frontmatter.title') || node.fields.slug;
             return (
-              <div key={node.fields.slug} className={`mb-3 ${postContainer}`}>
+              <div key={node.fields.slug} css={postContainer} className={`mb-3`}>
                 <h3>
-                  <Link className={postLink} to={node.fields.slug}>
+                  <Link css={postLink} to={node.fields.slug}>
                     {title}
                   </Link>
                 </h3>
@@ -59,11 +61,9 @@ class BlogIndex extends React.Component {
         <hr className="divider"/>
         <Footer/>
       </div>
-    );
-  }
+    </Layout>
+  );
 }
-
-export default BlogIndex;
 
 export const pageQuery = graphql`
   query IndexQuery {
