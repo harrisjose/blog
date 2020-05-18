@@ -6,6 +6,22 @@
   "bugs": {
     "url": "https://github.com/harrisjose/blog/issues"
   },
+  "homepage": "https://harrisjose.github.io",
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "main": "n/a",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harrisjose/blog.git"
+  },
+  "scripts": {
+    "dev": "gatsby develop",
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "deploy": "gatsby build && gh-pages -d public -b master -r https://github.com/harrisjose/harrisjose.github.io.git"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.11",
@@ -42,42 +58,5 @@
     "eslint-plugin-react": "^7.7.0",
     "gh-pages": "^0.12.0",
     "prettier": "^1.6.1"
-  },
-  "homepage": "https://harrisjose.github.io",
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "main": "n/a",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/harrisjose/blog.git"
-  },
-  "scripts": {
-    "lint": "xo",
-    "test": "xo",
-    "dev": "gatsby develop",
-    "develop": "gatsby develop",
-    "build": "gatsby build",
-    "deploy": "gatsby build && gh-pages -d public -b master -r https://github.com/harrisjose/harrisjose.github.io.git"
-  },
-  "xo": {
-    "extends": "xo-react",
-    "space": true,
-    "globals": [
-      "graphql"
-    ],
-    "rules": {
-      "import/no-extraneous-dependencies": "off",
-      "import/no-unassigned-import": {
-        "allow": [
-          "*.css"
-        ]
-      },
-      "react/no-danger": "off",
-      "react/prop-types": [
-        1
-      ]
-    }
   }
 }
