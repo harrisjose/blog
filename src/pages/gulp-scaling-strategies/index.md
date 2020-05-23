@@ -9,8 +9,9 @@ Gulp is a great tool for running tasks. It saves us loads of time while developm
 ## The problem with Gulp
 
 Soon we had two major problems at hand,
-* The gulpfiles were huge, with common code scattered all over.
-* Running these tasks took some time.
+
+- The gulpfiles were huge, with common code scattered all over.
+- Running these tasks took some time.
 
 This was a problem since changing something in a task meant changing it in ~10 projects. Also since tasks took sometime to complete, development no longer felt instant.
 
@@ -24,22 +25,22 @@ An example task could look like,
 
 ```javascript
 /*
-* tasks/cleanFiles.js
-* Clean build artifacts and temp files
-*/
+ * tasks/cleanFiles.js
+ * Clean build artifacts and temp files
+ */
 module.exports = function(gulp, config) {
   return function() {
     const rimraf = require('rimraf')
     const folders = ['build', 'tmp', 'public']
 
-    folders.map((folder) => {
+    folders.map(folder => {
       let path = path.join(process.cwd(), folder)
       return rimraf(path)
-    });
+    })
 
     return Promise.all(folders)
   }
-};
+}
 ```
 
 ## Extracting configuration out of tasks
@@ -48,27 +49,28 @@ An easy way to make your tasks easier to maintain is by separating out folder pa
 
 ```javascript
 /*
-* tasks/processJs.js
-* transpiles and lints JS files
-*/
+ * tasks/processJs.js
+ * transpiles and lints JS files
+ */
 module.exports = function(gulp, config) {
   return function() {
-    const babel = require('gulp-babel');
-    const eslint = require('gulp-eslint');
-    const { babelOptions, eslintOptions } = config;
+    const babel = require('gulp-babel')
+    const eslint = require('gulp-eslint')
+    const { babelOptions, eslintOptions } = config
 
-    return gulp.src('assets/js/*.js')
+    return gulp
+      .src('assets/js/*.js')
       .pipe(eslint(eslintOptions))
       .pipe(babel(babelOptions))
-      .pipe(gulp.dest('dist/assets/js'));
+      .pipe(gulp.dest('dist/assets/js'))
   }
 }
 
 /* gulpfile.js */
-const gulp = require('gulp');
-const config = require(path.join(process.cwd(), 'config'));
+const gulp = require('gulp')
+const config = require(path.join(process.cwd(), 'config'))
 
-const processJSFiles = require('./tasks/processJs')(gulp, config);
+const processJSFiles = require('./tasks/processJs')(gulp, config)
 
 gulp.task('js', processJSFiles)
 ```
@@ -86,8 +88,9 @@ We usually don't define task dependencies (tasks that should run before a task) 
 A lot of tasks in gulp usually look like this,
 
 ```javascript
-gulp.task('transpile', function(){
-  return gulp.src('assets/js/*.js')
+gulp.task('transpile', function() {
+  return gulp
+    .src('assets/js/*.js')
     .pipe(babel(options))
     .pipe(gulp.dest('dist/assets/js'))
 })
@@ -102,18 +105,17 @@ This quickly starts slowing down your rebuilds as the number of files start incr
 One of the biggest issues with gulp is that it isn't very fast when it comes to things like copying a lot of files (around 10,000 of them) from one place to another. So instead of doing this,
 
 ```javascript
-return gulp.src('assets/images/**/*.*')
-  .pipe(gulp.dest('assets/images/**/*.*'))
+return gulp.src('assets/images/**/*.*').pipe(gulp.dest('assets/images/**/*.*'))
 ```
 
 do it like this,
 
 ```javascript
-const copy = require('cpy');
+const copy = require('cpy')
 
 await copy('assets/images/**/*.*', 'dist', {
-  parents: true
-});
+  parents: true,
+})
 ```
 
 In most cases, you can find a node module that does what you're doing with gulp, exponentially faster. So find a package or get your hands dirty and write one.
@@ -137,13 +139,14 @@ There should be enough guides on how to create a node module but the gist is tha
 ```
 
 You can now add "myGulpModule" as a dependency on your projects and run it via
+
 ```bash
 ./node_modules/.bin/myGulpModule myTaskName
 ```
 
-Oh wait, did I mention you just built an entire CLI now ? (ᵔᴥᵔ)
+Oh wait, did I mention you've built an entire CLI now ? (ᵔᴥᵔ)
 
 ### Related Reading
 
-[Let's scale that Gulpfile.js](http://www.drinchev.com/blog/let-s-scale-that-gulpfile-js/) - Ivan Drinchev   
+[Let's scale that Gulpfile.js](http://www.drinchev.com/blog/let-s-scale-that-gulpfile-js/) - Ivan Drinchev
 [Awesome Gulp](https://github.com/alferov/awesome-gulp) - Philipp Alferov

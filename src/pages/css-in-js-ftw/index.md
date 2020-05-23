@@ -8,16 +8,15 @@ I gave a presentation at work recently about the whole **CSS vs CSS in JS** deba
 
 <div class="py-1"></div>
 
-> These slides go in two directions - top-down and left-right. If you’re looking through them remember to go down before going to the next slide. Also the TL;DR version of the talk is right below, just in case anyone’s interested.
+> These slides go in two directions - top-down and left-right. If you’re looking through them remember to go down before going to the next slide. Also the TL;DR version of the talk is right below, in case you think the slides are shit (which I'd totally understand).
 
 <div class="py-2"></div>
 
-<iframe src="//slides.com/harrisjose/cssinjs/embed?style=dark" width="600" height="400">
-</iframe>
+<iframe src="//slides.com/harrisjose/cssinjs/embed?style=dark" width="600" height="400"></iframe>
 
 <div class="py-2"></div>
 
-CSS by itself is a very good way to style **documents**. I emphasize documents because I believe CSS is not the best way to style apps. A few annoying things about having to use CSS at scale, in web apps are
+CSS by itself is a very good way to style **documents**. I emphasize on documents because CSS just doesn't work well enough when styling apps. A few annoying things about having to use CSS in web apps, at scale are
 
 - There is currently no way to enforce scoping for your styles. The cascade is a good idea for documents, not applications.
 - No dependency management built in. The previous point about the cascade applies here too.

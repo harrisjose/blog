@@ -1,32 +1,34 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import get from 'lodash/get';
-import {css} from '@emotion/core';
-import { StaticQuery, graphql } from 'gatsby';
+import React from 'react'
+import Helmet from 'react-helmet'
+import get from 'lodash/get'
+import { css } from '@emotion/core'
+import { graphql } from 'gatsby'
 
-import Layout from '../components/layout';
-import Footer from '../components/footer';
-import NavBar from '../components/nav-bar';
+import Layout from '../components/layout'
+import Footer from '../components/footer'
+import NavBar from '../components/nav-bar'
 
 const title = css`
   font-size: 1.8em;
   margin-bottom: 5px;
-`;
+`
 
 const titleSubtext = css`
   font-size: 0.8em;
   color: var(--charcoal);
-`;
+`
 
 const content = css`
   max-width: 100%;
   width: 768px;
 
-  & h2, & h3 {
+  & h2,
+  & h3 {
     margin: 32px 0 8px;
   }
 
-  & p, & ul {
+  & p,
+  & ul {
     font-size: 0.95em;
     line-height: 1.7;
     margin: 14px 0;
@@ -62,30 +64,34 @@ const content = css`
     color: #617692;
     font-style: italic;
   }
-`;
+`
 
 export default props => {
-  const post = get(props, 'data.markdownRemark');
-  const siteTitle = get(props, 'data.site.siteMetadata.title');
+  const post = get(props, 'data.markdownRemark')
+  const siteTitle = get(props, 'data.site.siteMetadata.title')
 
   return (
     <Layout children={props.children}>
       <div className="bg-haze pt-2 minh-viewport">
-        <Helmet title={`${post.frontmatter.title} | ${siteTitle}`}/>
-        <NavBar/>
+        <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
+        <NavBar />
 
         <div className="mx-auto my-5 container">
           <h1 css={title}>{post.frontmatter.title}</h1>
           <p css={titleSubtext}>{post.frontmatter.date}</p>
-          <div css={content} className={`mt-4 mb-3`} dangerouslySetInnerHTML={{__html: post.html}}/>
+          <div
+            css={content}
+            className={`mt-4 mb-3`}
+            dangerouslySetInnerHTML={{ __html: post.html }}
+          />
         </div>
 
-        <hr className="divider"/>
-        <Footer/>
+        <hr className="divider" />
+        <Footer />
       </div>
     </Layout>
-  );
-};
+  )
+}
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -104,4 +110,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`

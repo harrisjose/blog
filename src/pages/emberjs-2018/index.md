@@ -8,15 +8,15 @@ I'm holding off on a couple of other posts because this one is far more importan
 
 ## Hot Module Reloading
 
-Before you point it out, [this](https://github.com/toranb/ember-cli-hot-loader) doesn't exactly count. I wanna see HMR, enabled for all projects out of the box. In my opinion (and experience) this is something you think of as a *nice to have* until you start playing around with the likes of React or Vue - frameworks that have first class support for it.
+Before you point it out, [this](https://github.com/toranb/ember-cli-hot-loader) doesn't exactly count. I wanna see HMR, enabled for all projects out of the box. In my opinion (and experience) this is something you think of as a _nice to have_ until you start playing around with the likes of React or Vue - frameworks that have first class support for it.
 
-*But why is this the first thing on my list?*
+_But why is this the first thing on my list?_
 
 Before I get into specifics, go watch [this talk](https://vimeo.com/36579366) by Bret Victor on how fast feedback loops are a pre-requisite for creativity. Bret also makes it very clear that preserving application state while you're making changes can unlock ideas that would not have occurred to us with our current workflows.
 
 Imagine you're working on an on-boarding popup that has successive screens. With HMR, I can first open up the popup, make changes on the first screen, have it update instantly, then click next to go to the second screen and make changes on it.
 
-Right now, you either start batching your changes, reload and repeat *or* you start tweaking your code so that the screen you're iterating on opens right away. This is frustrating, and once you get used to immediate feedback with other frameworks, it's very hard to adjust to the slow rebuild, refresh cycle in ember-cli apps (particularly the large ones at work).
+Right now, you either start batching your changes, reload and repeat _or_ you start tweaking your code so that the screen you're iterating on opens right away. This is frustrating, and once you get used to immediate feedback with other frameworks, it's very hard to adjust to the slow rebuild, refresh cycle in ember-cli apps (particularly the large ones at work).
 
 ## Better Components
 
@@ -54,11 +54,11 @@ Afaik, effort is already underway for code-splitting and tree-shaking and it wou
 
 ## Better & Faster Build Pipelines
 
-I don't really like [Broccoli](http://broccolijs.com/#). Maybe ***understand*** would be a better word. What is Broccoli supposed to manage in ember-cli apps? Is it equivalent to what webpack does for React and Vue apps? Or is it supposed to function as a base layer for the ember-cli add-on system? (If you've got a link that explains all this, please share).
+I don't really like [Broccoli](http://broccolijs.com/#). Maybe **_understand_** would be a better word. What is Broccoli supposed to manage in ember-cli apps? Is it equivalent to what webpack does for React and Vue apps? Or is it supposed to function as a base layer for the ember-cli add-on system? (If you've got a link that explains all this, please share).
 
 I've seen Broccoli being used to create asset pipeline for a smallish project and I'm imagining that it somewhat does the same thing for ember. But the lack of documentation makes it very frustrating to understand what it's being used for and harder to hack into, when needed.
 
-> *Update*: [@jwwweber](https://twitter.com/jwwweber) pointed [this article](http://www.oligriffiths.com/broccolijs/) out to me recently and although I haven't had time to go through this entirely yet, it does look like Oli Griffiths has a good starting point for people wanting to know more about Broccoli.
+> _Update_: [@jwwweber](https://twitter.com/jwwweber) pointed [this article](http://www.oligriffiths.com/broccolijs/) out to me recently and although I haven't had time to go through this entirely yet, it does look like Oli Griffiths has a good starting point for people wanting to know more about Broccoli.
 
 Besides Broccoli, an easier way to generate multiple builds (one for newer browsers and one for legacy) would also be very useful.
 
@@ -66,7 +66,7 @@ Besides Broccoli, an easier way to generate multiple builds (one for newer brows
 
 Ember has been around for quite some time now and it's kinda hard to keep track of the best practices (I sometimes get confused on whether something I'm doing out of habit has been anti-pattern'd). I guess better documentation and examples should take care of this.
 
-Also, it would be really nice to have a set of recommended add-ons, curated by the community. Plugins like *route-action-helpers* and *ember-concurrency* make life a lot easier and developers should be actively encouraged to use them whenever appropriate.
+Also, it would be really nice to have a set of recommended add-ons, curated by the community. Plugins like _route-action-helpers_ and _ember-concurrency_ make life a lot easier and developers should be actively encouraged to use them whenever appropriate.
 
 ## Concluding Thoughts
 
