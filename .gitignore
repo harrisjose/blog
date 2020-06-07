@@ -30,3 +30,5 @@ node_modules
 # Build Files
 .cache
 public/
+
+.DS_Store
