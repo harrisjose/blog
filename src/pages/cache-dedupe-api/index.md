@@ -1,12 +1,20 @@
 ---
 title: A request cache for client side apps in under 40LOC
-date: 2020-05-24 22:14:31
-tags: [axois, cache, query, swr, request-cache, api, front-end, frameworks]
+date: 2020-05-24T22:14:31.000+00:00
+tags:
+- axois
+- cache
+- query
+- swr
+- request-cache
+- api
+- front-end
+- frameworks
+
 ---
+This would usually be something that your framework would handle. Ember data, for example, works based on the [Stale While Revalidate](https://web.dev/stale-while-revalidate/) pattern for caching requests. React has two great libraries that sort of work with the same pattern: [SWR](https://swr.now.sh) and [react-query](https://github.com/tannerlinsley/react-query#installation).
 
-This would usually be something that your framework would handle. Ember data for example, works based on the [Stale While Revalidate](https://web.dev/stale-while-revalidate/) pattern for caching requests. React has two great libraries that sort of work with the same pattern: [SWR](https://swr.now.sh) and [react-query](https://github.com/tannerlinsley/react-query#installation).
-
-However, I found myself building out something like this for work and was surprised at how easy it was.
+We use Vue at work and there aren't any widely used abstractions like these in vue-land. 
 
 ## Caching responses
 
