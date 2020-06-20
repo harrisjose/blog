@@ -4,10 +4,14 @@ hide_body: false
 fields:
 - type: text
   name: title
-  label: title
+  label: Title
 - type: datetime
   name: date
-  label: date
+  label: Published on
 - type: list
   name: tags
-  label: tags
+  label: Tags
+- name: draft
+  type: boolean
+  label: Draft
+  hidden: false
