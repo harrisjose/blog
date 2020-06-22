@@ -12,13 +12,11 @@ tags:
 - frameworks
 
 ---
-This would usually be something that your framework would handle. Ember data, for example, works based on the [Stale While Revalidate](https://web.dev/stale-while-revalidate/) pattern for caching requests. React has two great libraries that sort of work with the same pattern: [SWR](https://swr.now.sh) and [react-query](https://github.com/tannerlinsley/react-query#installation).
-
-We use Vue at work and there aren't any widely used abstractions like these in vue-land. 
+Caching and de-duping HTTP requests helps [facilitate local reasoning](https://sophiebits.com/2020/01/01/fast-maintainable-db-patterns.html "Fast and maintainable patterns for fetching from a database - Sophie Alpert"). This means that you think about a part of your code in isolation, without holding the entire system in your head. I'll get into more of why this has a huge impact on the way you code at the end of this post.
 
 ## Caching responses
 
-We'll use a ES6 class for our cache but this would work just as well with the [module pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript). First, we need a way to insert requests into the cache.
+First, we need a way to insert requests into the cache.
 
 ```javascript
 class Cache {
@@ -49,7 +47,7 @@ class Cache {
 }
 ```
 
-**_getQueryHash_** is a function that returns a deterministic hash based on the url and params. The easiest way to do this is to first sort the params and stringify them. Append this to the url and you'e done.
+**_getQueryHash_** is a function that returns a deterministic hash based on the URL and params. We sort the params, stringify them and then append that to the URL and now we've got a unique key for a URL.
 
 ```javascript
 getQueryHash(url, params) {
@@ -109,7 +107,7 @@ class Cache {
 
 ## Cache Invalidation
 
-Checking if a request exists in cache or removing one from the cache is pretty straightforward. But in most cases you'd usually want the cache to expire based on a timeout. Let's introduce a config object to our **_createRequest_** function that lets us specify how long a request should be persisted in the cache via a **cacheTimeout** prop. We'll also add a way to force cache invalidation with the **force** prop.
+Checking if a request exists in cache or removing one from the cache is pretty straightforward. But in most cases, you'd usually want the cache to expire based on a timeout. Let's introduce a config object to our **_createRequest_** function that lets us specify how long a request should be persisted in the cache via a **cacheTimeout** prop. We'll also add a way to force cache invalidation with the **force** prop.
 
 ```javascript
 class Cache {
@@ -158,7 +156,7 @@ class Cache {
 
 ## Using the cache
 
-We'll be using axios for making the requests but this should work with fetch or anything else you want to use. Since we don't really do anything with the response, it'll be the same as what you'd have if you'd used axios directly. Essentially **_createRequest_** is just a higher-level function that manages the cache side of things while you make requests like always.
+We'll be using axios for making the requests but this should work with fetch or anything else you want to use. Since we don't really do anything with the response, it'll be the same as what you'd have if you'd used axios directly. Essentially **_createRequest_** is just a higher-order function that manages the cache while you get to make requests like you usually do.
 
 ```javascript
 cache
@@ -173,21 +171,19 @@ cache
   })
 ```
 
-This becomes more powerful when you combine it with the [bridge](https://en.wikipedia.org/wiki/Bridge_pattern) or adapter patterns where all the magic would be wrapped up inside a data-layer thereby decoupling the cache implementation and axios from your appication code. The advantages of an approach like this should be obvious.
+This becomes more powerful when you combine it with the [bridge](https://en.wikipedia.org/wiki/Bridge_pattern) or adapter patterns where all the magic would be wrapped up inside a data-layer. This decouples the cache implementation (and axios) from your application code.
 
 ```javascript
 // API.js
 import axios from 'axios'
 
 export const API = {
-  ...
   get(url, params) {
-    return createRequest(axios.get, url, {
-      params,
-      baseURL: 'someurl.com/api'
-    })
+    return createRequest(axios.get, url, { params })
+  },
+  post(url, payload) {
+	return axios.post(url, payload)
   }
-  ...
 }
 
 // SomeComponent.js
@@ -197,3 +193,9 @@ loadData() {
   API.get(url, params).then((response) => {...})
 }
 ```
+
+## What does this solve?
+
+Most of modern front end development is centered around writing components. This pattern lets us make components responsible for fetching the data it needs, without worrying about whether the same data is being fetched by another part of your app.  
+  
+So if a page has two components that display user details - like a summary card and then an address card - we can fetch the user details inside both components independently. The cache takes care of the rest.

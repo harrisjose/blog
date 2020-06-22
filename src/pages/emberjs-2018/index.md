@@ -1,14 +1,18 @@
 ---
 title: EmberJS 2018 - My Wishlist
-date: 2018-05-15 08:14:31
-tags: [ember, ember-cli, front-end, frameworks]
----
+date: 2018-05-15T08:14:31.000+00:00
+tags:
+- ember
+- ember-cli
+- front-end
+- frameworks
 
+---
 I'm holding off on a couple of other posts because this one is far more important. The EmberJS core team has called for blog posts as the first step in setting the 2018 roadmap. Here's what I'd like to see in Ember over this year and the next.
 
 ## Hot Module Reloading
 
-Before you point it out, [this](https://github.com/toranb/ember-cli-hot-loader) doesn't exactly count. I wanna see HMR, enabled for all projects out of the box. In my opinion (and experience) this is something you think of as a _nice to have_ until you start playing around with the likes of React or Vue - frameworks that have first class support for it.
+Before you point it out, [this](https://github.com/toranb/ember-cli-hot-loader) doesn't exactly count. I want to see HMR, enabled for all projects out of the box. In my opinion (and experience) this is something you think of as a _nice to have_ until you start playing around with the likes of React or Vue - frameworks that have first class support for it.
 
 _But why is this the first thing on my list?_
 
