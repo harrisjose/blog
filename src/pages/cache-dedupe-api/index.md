@@ -9,14 +9,13 @@ tags:
 - request-cache
 - api
 - front-end
-- frameworks
 
 ---
 Caching and de-duping HTTP requests helps [facilitate local reasoning](https://sophiebits.com/2020/01/01/fast-maintainable-db-patterns.html "Fast and maintainable patterns for fetching from a database - Sophie Alpert"). This means that you think about a part of your code in isolation, without holding the entire system in your head. I'll get into more of why this has a huge impact on the way you code at the end of this post.
 
 ## Caching responses
 
-First, we need a way to insert requests into the cache.
+A class works well here since our cache contains an object to store requests and methods to add and remove requests from it. The **_createRequest_** method generates a unique key for the request and inserts it into the cache.
 
 ```javascript
 class Cache {
@@ -60,7 +59,7 @@ getQueryHash(url, params) {
 
 ## De-duplicating requests
 
-A simple optimization we can add is de-duplicating requests by storing the promise from our queryFn. Now, when the same request is made again, we can just return the existing promise. This promise is removed once it resolves.
+A simple optimization we can add is de-duplicating requests by storing the promise from our **_queryFn_**. Now, when the same request is made again, we can just return the existing promise. This promise is removed once it resolves.
 
 ```javascript
 class Cache {
@@ -194,8 +193,10 @@ loadData() {
 }
 ```
 
-## What does this solve?
+## Locally reasoning about data
 
-Most of modern front end development is centered around writing components. This pattern lets us make components responsible for fetching the data it needs, without worrying about whether the same data is being fetched by another part of your app.  
-  
-So if a page has two components that display user details - like a summary card and then an address card - we can fetch the user details inside both components independently. The cache takes care of the rest.
+Most of modern front end development is centered around writing components. And when you build large apps it becomes more and more difficult to hoist data fetching logic higher up the component hierarchy.
+
+Even if that's not a problem, having a component fetch data that unrelated to it makes code harder to maintain. Or you might want your components to work in isolation to make sure they can be dropped onto anywhere in your app.
+
+The obvious alternative here is to build "smarter" components that fetch all the data they need. But then there's no control over how many API calls a page has and you end up with duplicate requests. Our cache fixes this because it makes sure requests are not duplicated. 
