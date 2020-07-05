@@ -15,3 +15,5 @@ fields:
   type: boolean
   label: Draft
   hidden: false
+pages:
+- src/pages/adding-types-to-your-npm-package.md
